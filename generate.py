@@ -444,7 +444,10 @@ def generate_images(
             z = torch.from_numpy(np.random.RandomState(seed).randn(1, G.z_dim)).to(device)
             img = G(z, label, truncation_psi=truncation_psi, noise_mode=noise_mode)
             img = (img.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
-            PIL.Image.fromarray(img[0].cpu().numpy(), 'RGB').save(f'{outdir}/seed{seed:04d}.png')
+            if class_idx is None:
+                PIL.Image.fromarray(img[0].cpu().numpy(), 'RGB').save(f'{outdir}/seed{seed:04d}.png')
+            else:
+                PIL.Image.fromarray(img[0].cpu().numpy(), 'RGB').save(f'{outdir}/seed{seed:04d}class{class_idx}.png')
 
     elif(process=='interpolation' or process=='interpolation-truncation'):
         # create path for frames
@@ -492,3 +495,19 @@ if __name__ == "__main__":
     generate_images() # pylint: disable=no-value-for-parameter
 
 #----------------------------------------------------------------------------
+""" generate a concatenated image from all 10 classes 
+classes=10
+outdir='../out/generated-faces/900/'
+seed=777
+def gen_classes(outdir,seed,classes):
+    z = torch.from_numpy(np.random.RandomState(seed).randn(1, G.z_dim)).to('cuda')
+    imlist = []
+    for c in range(classes):
+        label = torch.zeros([1, G.c_dim], device=device)
+        label[:, c] = 1
+        img = G(z, label)
+        img = (img.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
+        imlist.append(img[0].cpu().numpy())
+        concat = np.ma.concatenate(imlist, axis=1)
+    PIL.Image.fromarray(concat, 'RGB').save(f'{outdir}/seed{seed:04d}_classes.png')
+"""
