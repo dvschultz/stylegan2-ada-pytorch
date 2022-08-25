@@ -454,7 +454,7 @@ def generate_images(
         # autogenerate video name: not great!
         if seeds is not None:
             seedstr = '_'.join([str(seed) for seed in seeds])
-            vidname = f'{process}-{interpolation}-seeds_{seedstr}-{fps}fps'
+            vidname = f'{process}-{interpolation}-{fps}fps'
         elif(interpolation=='noiseloop' or 'circularloop'):
             vidname = f'{process}-{interpolation}-{diameter}dia-seed_{random_seed}-{fps}fps'
 
