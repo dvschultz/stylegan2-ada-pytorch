@@ -1,4 +1,4 @@
-##My StyleGAN2 ADA Pytorch repo
+## My StyleGAN2 ADA Pytorch repo
 3 July 23
 
 ## Add to Colab
