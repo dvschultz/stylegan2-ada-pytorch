@@ -1,3 +1,6 @@
+##My StyleGAN2 ADA Pytorch repo
+3 July 23
+
 ## Add to Colab
 
 ### StyleGAN2-ADA PyTorch (Start Here)
