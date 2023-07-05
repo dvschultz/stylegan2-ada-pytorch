@@ -1,6 +1,5 @@
 ## My StyleGAN2 ADA Pytorch repo
-My fork: 3 July 23
-Original: https://github.com/dvschultz/stylegan2-ada-pytorch
+My fork: 3 July 23 | Original: https://github.com/dvschultz/stylegan2-ada-pytorch
 
 ## Add to Colab
 
